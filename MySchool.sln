@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - MySchool.Ui", "0 - MySchool.Ui", "{688C095E-6D84-4AD6-BC70-3A285AAC9F99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - MySchool.Domain", "1 - MySchool.Domain", "{C4AA9754-0DC3-4095-A596-5AEEFF707D20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - MySchool.Infra", "2 - MySchool.Infra", "{F99F075A-C36C-4C2E-A5A8-CE93DA8FFAAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - MySchool.Infra.Data", "2.1 - MySchool.Infra.Data", "{18F11860-E2D9-4103-A08C-83275B57A764}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2 - MySchool.Infra.IoC", "2.2 - MySchool.Infra.IoC", "{C44A592A-EACF-45E2-ACBC-42F381A77AF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.1 - MySchool.Ui.App", "0.1 - MySchool.Ui.App", "{1423F40A-EF3A-419F-8C46-36267D660FC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.2 - MySchool.Ui.Api", "0.2 - MySchool.Ui.Api", "{185CEB44-F396-4751-9BCF-F1FDB0DA7D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySchool.Ui.Api", "src\MySchool.Ui.Api\MySchool.Ui.Api.csproj", "{F8912969-026C-412B-BA0C-F054A805702D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySchool.Domain", "src\MySchool.Domain\MySchool.Domain.csproj", "{E05280A3-0BD1-434C-9982-1EA554F6344F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySchool.Infra.Data", "src\MySchool.Infra.Data\MySchool.Infra.Data.csproj", "{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySchool.Infra.IoC", "src\MySchool.Infra.IoC\MySchool.Infra.IoC.csproj", "{5322C788-994F-4967-8A44-673DD1132B25}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MySchool.Ui.App", "src\MySchool.Ui.App\", "{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_52161"
+		Debug.AspNetCompiler.PhysicalPath = "src\MySchool.Ui.App\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52161\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_52161"
+		Release.AspNetCompiler.PhysicalPath = "src\MySchool.Ui.App\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52161\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52161"
+		SlnRelativePath = "src\MySchool.Ui.App\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8912969-026C-412B-BA0C-F054A805702D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8912969-026C-412B-BA0C-F054A805702D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8912969-026C-412B-BA0C-F054A805702D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8912969-026C-412B-BA0C-F054A805702D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05280A3-0BD1-434C-9982-1EA554F6344F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05280A3-0BD1-434C-9982-1EA554F6344F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05280A3-0BD1-434C-9982-1EA554F6344F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05280A3-0BD1-434C-9982-1EA554F6344F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5322C788-994F-4967-8A44-673DD1132B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5322C788-994F-4967-8A44-673DD1132B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5322C788-994F-4967-8A44-673DD1132B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5322C788-994F-4967-8A44-673DD1132B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18F11860-E2D9-4103-A08C-83275B57A764} = {F99F075A-C36C-4C2E-A5A8-CE93DA8FFAAC}
+		{C44A592A-EACF-45E2-ACBC-42F381A77AF5} = {F99F075A-C36C-4C2E-A5A8-CE93DA8FFAAC}
+		{1423F40A-EF3A-419F-8C46-36267D660FC7} = {688C095E-6D84-4AD6-BC70-3A285AAC9F99}
+		{185CEB44-F396-4751-9BCF-F1FDB0DA7D90} = {688C095E-6D84-4AD6-BC70-3A285AAC9F99}
+		{F8912969-026C-412B-BA0C-F054A805702D} = {185CEB44-F396-4751-9BCF-F1FDB0DA7D90}
+		{E05280A3-0BD1-434C-9982-1EA554F6344F} = {C4AA9754-0DC3-4095-A596-5AEEFF707D20}
+		{4B23B7C3-B1BB-4B04-A58A-0DA7DC8EA721} = {18F11860-E2D9-4103-A08C-83275B57A764}
+		{5322C788-994F-4967-8A44-673DD1132B25} = {C44A592A-EACF-45E2-ACBC-42F381A77AF5}
+		{D7F4640F-1B6D-4C6C-B5AE-19AD887F4BA4} = {1423F40A-EF3A-419F-8C46-36267D660FC7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E3787D7-DE04-49C3-B4E0-F9D799A8137E}
+	EndGlobalSection
+EndGlobal
