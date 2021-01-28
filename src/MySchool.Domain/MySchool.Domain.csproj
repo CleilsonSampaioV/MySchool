@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Class\" />
-    <Folder Include="Commands\School\" />
+    <Compile Remove="Commands\Class\**" />
+    <EmbeddedResource Remove="Commands\Class\**" />
+    <None Remove="Commands\Class\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="prmToolkit.NotificationPattern" Version="1.1.3" />
+    <PackageReference Include="Flunt" Version="1.0.5" />
   </ItemGroup>
 
 </Project>
