@@ -1,6 +1,6 @@
 ﻿using Flunt.Validations;
 
-namespace MySchool.Domain.Commands.Contract
+namespace MySchool.Domain.Interfaces.Command
 {
     public interface ICommand: IValidatable
     {

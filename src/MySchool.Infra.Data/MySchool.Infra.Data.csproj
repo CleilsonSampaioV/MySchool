@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Map\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MySchool.Domain\MySchool.Domain.csproj" />
   </ItemGroup>
 

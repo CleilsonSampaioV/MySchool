@@ -1,55 +1,34 @@
-﻿/// <summary>
+﻿using MySchool.Domain.ValueObjects;
+
+/// <summary>
 /// Summary description for Class1
 /// </summary>
 public class School : EntityBase
 {
-    public School(string name, string zipCode, string address, string complement, string neighborhood, string city, string state, string country)
+    public School(string name, string cnpj, Address address)
     {
-        Name = name;
-
-        if (Name == null)
+        if (string.IsNullOrEmpty(name))
         {
             AddNotification("Escola", "Informe um nome para a escola");
         }
-
-        ZipCode = zipCode;
-        Address = address;
-        Complement = complement;
-        Neighborhood = neighborhood;
-        City = city;
-        State = state;
-        Country = country;
-    }
-
-    public School(string name, string address, string complement, string neighborhood, string city, string state, string country)
-    {
         Name = name;
 
-        if (Name == null)
+        if (cnpj.Length > 14)
         {
-            AddNotification("Escola", "Informe um nome para a escola");
+            AddNotification("Escola.Cnpj", "Informe um cnpj válido para a escola");
         }
 
         Address = address;
-        Complement = complement;
-        Neighborhood = neighborhood;
-        City = city;
-        State = state;
-        Country = country;
     }
 
     public string Name { get; private set; }
-    public string ZipCode { get; private set; }
-    public string Address { get; private set; }
-    public string Complement { get; private set; }
-    public string Neighborhood { get; private set; }
-    public string City { get; private set; }
-    public string State { get; private set; }
-    public string Country { get; private set; }
+    public string Cnpj { get; private set; }
+
+    public Address Address { get; private set; }
 
     public void UpdateName(string name)
     {
-        Name = name;
+        this.Name = name;
 
         if (Name == null)
         {
@@ -57,15 +36,9 @@ public class School : EntityBase
         }
     }
 
-    public void UpdateAddress(string zipCode, string address, string complement, string neighborhood, string city, string state, string country)
+    public void UpdateAddress(Address address)
     {
-        ZipCode = zipCode;
-        Address = address;
-        Complement = complement;
-        Neighborhood = neighborhood;
-        City = city;
-        State = state;
-        Country = country;
+        this.Address = address;
     }
 
 }

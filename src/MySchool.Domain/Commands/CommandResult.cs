@@ -1,4 +1,4 @@
-﻿using MySchool.Domain.Commands.Contract;
+﻿using MySchool.Domain.Interfaces.Command;
 
 namespace MySchool.Domain.Commands
 {
@@ -8,13 +8,13 @@ namespace MySchool.Domain.Commands
 
         public CommandResult(bool success, string message, object data)
         {
-            Success = success;
-            Message = message;
-            Data = data;
+             this.Success = success;
+            this.Message = message;
+            this.Data = data;
         }
 
         public bool Success { get; set; }
         public string Message { get; set; }
-        public object Data { get; set; }
+        public object Data { get; private set; }
     }
 }
