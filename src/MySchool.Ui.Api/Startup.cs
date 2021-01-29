@@ -29,7 +29,7 @@ namespace MySchool.Ui.Api
             // Swagger Config
             services.AddSwaggerSetup();
             // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // .NET Native DI Abstraction
             ServiceIoC.RegisterServices(services);
         }
@@ -51,8 +51,6 @@ namespace MySchool.Ui.Api
                 x.AllowAnyMethod();
                 x.AllowAnyOrigin();
             });
-            app.UseMvc();
-
 
             app.UseEndpoints(endpoints =>
             {

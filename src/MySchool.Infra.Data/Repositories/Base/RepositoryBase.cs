@@ -47,6 +47,11 @@ namespace MySchool.Infra.Data.Repositories.Base
             return _mySchoolContext.Set<TEntity>().Find(id);
         }
 
+        public IQueryable<TEntity> ListAndPaginationBy(Expression<Func<TEntity, bool>> where, int index, int pageSize = 10)
+        {
+            return List().Where(where).Skip(index).Take(pageSize);
+        }
+
         public IQueryable<TEntity> List(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _mySchoolContext.Set<TEntity>();
@@ -74,7 +79,7 @@ namespace MySchool.Infra.Data.Repositories.Base
             return _entity.Entity;
         }
 
-        public TEntity Editar(TEntity entity)
+        public TEntity Edit(TEntity entity)
         {
             _mySchoolContext.Entry(entity).State = EntityState.Modified;
 
@@ -116,5 +121,7 @@ namespace MySchool.Infra.Data.Repositories.Base
 
             return query;
         }
+
+
     }
 }

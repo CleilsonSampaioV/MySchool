@@ -18,13 +18,15 @@ namespace MySchool.Domain.Interfaces.Repositories.Base
 
         IQueryable<TEntity> List(params Expression<Func<TEntity, object>>[] includeProperties);
 
+        IQueryable<TEntity> ListAndPaginationBy(Expression<Func<TEntity, bool>> where, int indice, int tamanhoPagina = 10);
+
         IQueryable<TEntity> ListOrderedBy<TKey>(Expression<Func<TEntity, TKey>> ordem, bool ascendente = true, params Expression<Func<TEntity, object>>[] includeProperties);
 
         TEntity GetById(TId id, params Expression<Func<TEntity, object>>[] includeProperties);
 
         TEntity Add(TEntity entity);
 
-        TEntity Editar(TEntity entity);
+        TEntity Edit(TEntity entity);
 
         void Remove(TEntity entity);
 

@@ -1,55 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySchool.Domain.Commands;
-using MySchool.Domain.Commands.School;
+using MySchool.Domain.Commands.Class;
 using MySchool.Domain.Handlers;
 using MySchool.Domain.Queries;
 using MySchool.Infra.Data.Repositories.Transactions;
 using System;
 using System.Threading.Tasks;
 
-namespace MySchool.Ui.Api.Controllers
+namespace MyClass.Ui.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SchoolController : Base.BaseController
+    public class ClassController: MySchool.Ui.Api.Controllers.Base.BaseController
     {
-        public SchoolController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public ClassController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromServices] SchoolQueries schoolQueries)
+        public async Task<IActionResult> Get([FromServices] ClassQueries schoolQueries)
         {
             return Ok(schoolQueries.GetAll().Result);
         }
 
-
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id, [FromServices] SchoolQueries schoolQueries)
+        public async Task<IActionResult> Get(string id, [FromServices] ClassQueries schoolQueries)
         {
             return Ok(schoolQueries.Get(Guid.Parse(id)).Result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddSchoolCommand command, [FromServices] SchoolHandler handler)
+        public async Task<IActionResult> Post([FromBody] AddClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
         [HttpPatch()]
         [Route("UpdateName")]
-        public async Task<IActionResult> Put([FromBody] UpdateNameSchoolCommand command, [FromServices] SchoolHandler handler)
+        public async Task<IActionResult> Put([FromBody] UpdateNameClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
         [HttpPatch()]
-        [Route("UpdateAddress")]
-        public async Task<IActionResult> Put([FromBody] UpdateAddressSchoolCommand command, [FromServices] SchoolHandler handler)
+        [Route("UpdateShift")]
+        public async Task<IActionResult> Put([FromBody] UpdateShiftClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
         [HttpDelete()]
-        public async Task<IActionResult> Delete([FromBody] RemoveSchoolCommand command, [FromServices] SchoolHandler handler)
+        public async Task<IActionResult> Delete([FromBody] RemoveClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }

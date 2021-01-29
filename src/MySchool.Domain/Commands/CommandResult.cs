@@ -1,4 +1,6 @@
 ﻿using MySchool.Domain.Interfaces.Command;
+using System;
+using System.Threading.Tasks;
 
 namespace MySchool.Domain.Commands
 {
@@ -16,5 +18,10 @@ namespace MySchool.Domain.Commands
         public bool Success { get; set; }
         public string Message { get; set; }
         public object Data { get; private set; }
+
+        public static explicit operator CommandResult(Task<ICommandResult> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

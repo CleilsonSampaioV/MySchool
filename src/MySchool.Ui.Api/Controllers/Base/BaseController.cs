@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using MySchool.Domain.Commands;
 using MySchool.Infra.Data.Repositories.Transactions;
+using MySchool.Domain.Commands;
 
 namespace MySchool.Ui.Api.Controllers.Base
 {
@@ -29,9 +29,7 @@ namespace MySchool.Ui.Api.Controllers.Base
                 }
                 catch (Exception ex)
                 {
-                    // Aqui devo logar o erro
                     return BadRequest($"Houve um problema interno com o servidor. Entre em contato com o Administrador do sistema caso o problema persista. Erro interno: {ex.Message}");
-                    //return Request.CreateResponse(HttpStatusCode.Conflict, $"Houve um problema interno com o servidor. Entre em contato com o Administrador do sistema caso o problema persista. Erro interno: {ex.Message}");
                 }
             }
             else

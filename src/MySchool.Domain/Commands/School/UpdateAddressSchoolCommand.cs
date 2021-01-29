@@ -1,13 +1,13 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using MySchool.Domain.Interfaces.Command;
+using System;
 
 namespace MySchool.Domain.Commands.School
 {
-    public class AddSchoolCommand : Notifiable, ICommand
+    public class UpdateAddressSchoolCommand : Notifiable, ICommand
     {
-        public string Name { get; set; }
-        public string Cnpj { get; set; }
+        public Guid Id { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
         public string Neighborhood { get; set; }
@@ -20,10 +20,6 @@ namespace MySchool.Domain.Commands.School
         {
             AddNotifications(new Contract()
                 .Requires()
-                .HasMinLen(Name, 3, "Name", "Nome deve conter pelo menos 3 caracteres")
-                .HasMaxLen(Name, 255, "Name", "Nome deve conter até 255 caracteres")
-                .HasMinLen(Cnpj, 14, "Cnpj", "Cnpj inválido")
-                .HasMaxLen(Cnpj, 14, "Cnpj", "Cnpj inválido")
                 .HasMinLen(Street, 3, "Rua", "Rua deve conter pelo menos 3 caracteres")
                 .HasMaxLen(Street, 255, "Name", "Rua deve conter até 255 caracteres")
                 .HasMinLen(Number, 1, "Número", "Número deve conter pelo menos 3 caracteres")

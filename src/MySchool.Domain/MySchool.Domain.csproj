@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commands\Class\**" />
-    <EmbeddedResource Remove="Commands\Class\**" />
-    <None Remove="Commands\Class\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Flunt" Version="1.0.5" />
   </ItemGroup>
 
