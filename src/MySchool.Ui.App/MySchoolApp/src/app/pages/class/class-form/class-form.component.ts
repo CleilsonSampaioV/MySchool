@@ -48,7 +48,7 @@ export class ClassFormComponent implements OnInit {
 
   //PRIVATE METHODS
   private setCurrentAction() {
-    const urlSnapShot = this.route.snapshot.url[1].path;
+    const urlSnapShot = this.route.snapshot.url[0].path;
     if (urlSnapShot == 'new') {
       this.currentAction = 'new';
     } else {
@@ -66,11 +66,12 @@ export class ClassFormComponent implements OnInit {
   }
 
   private loadClass() {
+    debugger;
     if (this.currentAction == 'edit') {
       this.route.paramMap
         .pipe(
           switchMap((params) =>
-            this.classService.getById(Guid.parse(params.get('id')))
+            this.classService.getById(Guid.parse(params.get('class')))
           )
         )
         .subscribe(
@@ -87,20 +88,20 @@ export class ClassFormComponent implements OnInit {
   private setPageTitle() {
     if (this.currentAction == 'new') {
       this.pageTitle = 'Cadastro de Nova Turma';
-    }else{
+    } else {
       const className = this.schoolClass.name || '';
       this.pageTitle = 'Editando a Turma: ' + className;
     }
   }
 
   private createClass() {
-    const urlSnapShot = this.route.snapshot.url[0].path;
+    const urlSnapShot = this.route.snapshot.url[1].path;
     debugger;
     if (urlSnapShot != null) {
       const schoolIdLocal = urlSnapShot;
       let schoolClass: Class = Object.assign(
         new Class(),
-        this.classForm?.value,
+        this.classForm?.value
       );
       schoolClass.schoolId = schoolIdLocal;
       schoolClass.notifications = null;
@@ -121,7 +122,7 @@ export class ClassFormComponent implements OnInit {
     );
 
     this.classService.update(schoolClass).subscribe(
-      (schoolClass) => this.actionsForSuccess(schoolClass),
+      (schoolClass) => toastr.success('Processamento realizado com sucesso.'),
       (error) => this.actionsForError(error)
     );
   }
@@ -130,7 +131,22 @@ export class ClassFormComponent implements OnInit {
     debugger;
     toastr.success('Processamento realizado com sucesso.');
 
-    this.router.navigateByUrl(`turmas/${schoolClass.id}`, { skipLocationChange: true });
+    this.router
+    .navigateByUrl('turmas', { skipLocationChange: true })
+    .then(() => this.router.navigate(['turmas','edit' , `${schoolClass.schoolId}`, `${schoolClass.id}`]));
+  }
+
+  actionsForReturnAddClass(){
+    debugger;
+    let urlSnapShot = ""
+    if (this.currentAction == 'new') {
+      urlSnapShot = this.route.snapshot.url[1].path;
+    }else{
+      urlSnapShot = this.route.snapshot.url[1].path;
+    }
+    
+    this.router.navigateByUrl('turmas', { skipLocationChange: true })
+    .then(() => this.router.navigate(['turmas', `${urlSnapShot}`]));
   }
 
   private actionsForError(error: any) {

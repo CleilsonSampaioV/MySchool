@@ -34,12 +34,20 @@ export class ClassListComponent implements OnInit {
   }
 
   actionsForEditClass(id: Guid): void {
-    this.router.navigateByUrl(`turmas/${id}/edit`);
+    debugger;
+    const urlSnapShot = this.route.snapshot.url[0].path;
+    this.router
+    .navigateByUrl('turmas', { skipLocationChange: true })
+    .then(() => this.router.navigate(['turmas','edit' , `${urlSnapShot}`, `${id}`]));
   }
 
   actionsForNewClass(): void {
     const urlSnapShot = this.route.snapshot.url[0].path;
-    this.router.navigate(['turmas', urlSnapShot, 'new']);
+    this.router.navigate(['turmas/new', urlSnapShot]);
+  }
+
+  actionsForReturnToSchools(){
+    this.router.navigate(['']);
   }
 
   deleteClass(schoolClass: any) {

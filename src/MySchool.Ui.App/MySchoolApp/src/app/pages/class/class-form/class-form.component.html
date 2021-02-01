@@ -1,17 +1,9 @@
-<app-bread-crumb
-  [items]="[{ text: 'Turmas', link: '/turmas' }, { text: pageTitle }]"
-></app-bread-crumb>
-
-<app-page-header
-  [page-title]="pageTitle"
-  button-text="<< Voltar"
-  button-link="/turmas"
-  button-class="btn-outline-primary"
-></app-page-header>
-
+<div class="col-12 text-right mb-3">
+  <button (click)="actionsForReturnAddClass()" class="btn btn-warning">Voltar</button>
+</div>
 <form [formGroup]="classForm" (ngSubmit)="submitForm()">
   <div class="card">
-    <div class="card-header">Informações sobre a Categoria</div>
+    <div class="card-header bg-primary text-light">Informações sobre a Turma</div>
     <div class="card-body">
       <div class="form-row">
         <div class="form-group col-4">
