@@ -8,7 +8,7 @@ namespace MySchool.Domain.Entities
     {
         protected Class() { }
 
-        public Class(string name, string shift, string degree, Guid schoolId)
+        public Class(string name, string shift, string degree, string schoolId)
         {
             Name = name;
             if (string.IsNullOrEmpty(Name))
@@ -28,8 +28,8 @@ namespace MySchool.Domain.Entities
                 AddNotification("Turma.Grau", "Informe o grau para a turma");
             }
 
-            SchoolId = schoolId;
-            if (SchoolId == Guid.Empty)
+            SchoolId = Guid.Parse(schoolId);
+            if (SchoolId == Guid.NewGuid())
             {
                 AddNotification("Turma.Escola", "Informe o uma escola válida para realizar o cadastro da turma");
             }

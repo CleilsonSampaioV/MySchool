@@ -7,6 +7,8 @@ import { BaseResourceService } from "../../services/base-resource.service"
 
 import { switchMap } from "rxjs/operators";
 
+import { Guid } from 'guid-typescript';
+
 import toastr from "toastr";
 
 
@@ -67,7 +69,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     if (this.currentAction == "edit") {
       
       this.route.paramMap.pipe(
-        switchMap(params => this.resourceService.getById(+params.get("id")))
+        switchMap(params => this.resourceService.getById(Guid.parse(params.get("id"))))
       )
       .subscribe(
         (resource) => {

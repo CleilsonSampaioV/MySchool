@@ -16,9 +16,21 @@ namespace MySchool.Domain.Queries
             _repositoryClass = repositoryClass;
         }
 
+        public async Task<ICommandResult> GetAllClassBySchoolId(Guid id)
+        {
+            var listOfClasses = _repositoryClass.ListBy(x=>x.SchoolId == id).ToList();
+
+            if (listOfClasses.Any())
+            {
+                return new CommandResult(true, "Dados obtidos com sucesso!", listOfClasses);
+            }
+            return new CommandResult(false, "Dados não encontrados!", null);
+        }
+
         public async Task<ICommandResult> GetAll()
         {
-            var listOfClasses = _repositoryClass.List().ToList();
+            var listOfClasses = _repositoryClass.ListOrderedBy(x => x.Name, true).ToList();
+
 
             if (listOfClasses.Any())
             {

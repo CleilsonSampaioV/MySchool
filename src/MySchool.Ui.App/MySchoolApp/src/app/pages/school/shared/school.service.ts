@@ -9,7 +9,9 @@ import { BaseResourceService } from '../../../shared/services/base-resource.serv
 export class SchoolService extends BaseResourceService<School> {
 
   constructor(protected injector: Injector) {
-    super("api/school", injector, School.fromJson);
+    super("school", injector, School.fromJson);
   }
 
+
+  
 }

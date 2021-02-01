@@ -1,24 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using MySchool.Domain.Commands;
 using MySchool.Domain.Commands.Class;
 using MySchool.Domain.Handlers;
 using MySchool.Domain.Queries;
 using MySchool.Infra.Data.Repositories.Transactions;
-using System;
-using System.Threading.Tasks;
 
-namespace MyClass.Ui.Api.Controllers
+namespace MySchool.Ui.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClassController: MySchool.Ui.Api.Controllers.Base.BaseController
+    public class ClassController: Base.BaseController
     {
         public ClassController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromServices] ClassQueries schoolQueries)
+        [Route("GetAllClassBySchoolId/{id}")]
+        public async Task<IActionResult> GetAllClassBySchoolId(string id,[FromServices] ClassQueries schoolQueries)
         {
-            return Ok(schoolQueries.GetAll().Result);
+            return Ok(schoolQueries.GetAllClassBySchoolId(Guid.Parse(id)).Result);
         }
 
         [HttpGet("{id}")]
@@ -28,29 +29,31 @@ namespace MyClass.Ui.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddClassCommand command, [FromServices] ClassHandler handler)
+        [Route("Create")]
+        public async Task<IActionResult> Create([FromBody] AddClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
-        [HttpPatch()]
-        [Route("UpdateName")]
-        public async Task<IActionResult> Put([FromBody] UpdateNameClassCommand command, [FromServices] ClassHandler handler)
+        [HttpPut]
+        [Route("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateNameClassCommand command, [FromServices] ClassHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
-        [HttpPatch()]
-        [Route("UpdateShift")]
-        public async Task<IActionResult> Put([FromBody] UpdateShiftClassCommand command, [FromServices] ClassHandler handler)
-        {
-            return await ResponseAsync((CommandResult)handler.Handle(command).Result);
-        }
+        //[HttpPatch()]
+        //[Route("UpdateShift")]
+        //public async Task<IActionResult> Put([FromBody] UpdateShiftClassCommand command, [FromServices] ClassHandler handler)
+        //{
+        //    return await ResponseAsync((CommandResult)handler.Handle(command).Result);
+        //}
 
-        [HttpDelete()]
-        public async Task<IActionResult> Delete([FromBody] RemoveClassCommand command, [FromServices] ClassHandler handler)
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id,[FromServices] ClassHandler handler)
         {
-            return await ResponseAsync((CommandResult)handler.Handle(command).Result);
+            return await ResponseAsync((CommandResult)handler.Handle(id).Result);
         }
     }
 }

@@ -1,0 +1,98 @@
+<app-bread-crumb
+  [items]="[{ text: 'Turmas', link: '/turmas' }, { text: pageTitle }]"
+></app-bread-crumb>
+
+<app-page-header
+  [page-title]="pageTitle"
+  button-text="<< Voltar"
+  button-link="/turmas"
+  button-class="btn-outline-primary"
+></app-page-header>
+
+<form [formGroup]="classForm" (ngSubmit)="submitForm()">
+  <div class="card">
+    <div class="card-header">Informações sobre a Categoria</div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label for="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              !classForm.get('name').valid &&
+              classForm.get('name').touched
+            "
+          >
+            <div *ngIf="classForm.get('name').errors.required">
+              Dados obrigatórios
+            </div>
+            <div *ngIf="classForm.get('name').errors.minLength">
+              O Campo deve ter no minimo 2
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label for="description">Turno</label>
+          <input
+            type="text"
+            id="shift"
+            formControlName="shift"
+            class="form-control"
+          />
+          <div class="text-danger" *ngIf="!classForm.get('shift').valid && classForm.get('shift').touched">
+            <div *ngIf="classForm.get('shift').errors.required">
+              Dados obrigatórios
+            </div>
+            <div *ngIf="classForm.get('shift').errors.minLength">
+              O Campo deve ter no minimo 2
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label for="description">Grau</label>
+          <input
+            type="text"
+            id="degree"
+            formControlName="degree"
+            class="form-control"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              !classForm.get('degree').valid &&
+              classForm.get('degree').touched
+            "
+          >
+            <div *ngIf="classForm.get('degree').errors.required">
+              Dados obrigatórios
+            </div>
+            <div *ngIf="classForm.get('degree').errors.minLength">
+              O Campo deve ter no minimo 2
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
+    <strong>Erro no servidor</strong>
+    <ul>
+      <li *ngFor="let error of serverErrorMessages">{{ error }}</li>
+    </ul>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="!classForm.valid"
+    class="btn btn-primary btn-lg float-right mt-3"
+  >
+    Salvar
+  </button>
+</form>

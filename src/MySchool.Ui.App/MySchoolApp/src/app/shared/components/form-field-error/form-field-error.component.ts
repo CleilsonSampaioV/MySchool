@@ -40,12 +40,12 @@ export class FormFieldErrorComponent implements OnInit {
 
     else if( this.formControl.errors.minlength){
       const requiredLength = this.formControl.errors.minlength.requiredLength;
-      return `deve ter no mínimo ${requiredLength} caracteres`;
+      return `O campo deve ter no mínimo ${requiredLength} caracteres`;
     }
 
     else if( this.formControl.errors.maxlength){
       const requiredLength = this.formControl.errors.maxlength.requiredLength;
-      return `deve ter no máximo ${requiredLength} caracteres`;
+      return `O campo deve ter no máximo ${requiredLength} caracteres`;
     }
   }
 

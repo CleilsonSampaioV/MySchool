@@ -13,7 +13,6 @@ namespace MySchool.Domain.Handlers
     public class ClassHandler : Notifiable, IHandler<AddClassCommand>
                                            , IHandler<UpdateShiftClassCommand>
                                            , IHandler<UpdateNameClassCommand>
-                                           , IHandler<RemoveClassCommand>
     {
         private readonly IRepositoryClass _repositoryClass;
         public ClassHandler(IRepositoryClass repositoryClass)
@@ -31,13 +30,14 @@ namespace MySchool.Domain.Handlers
                 return new CommandResult(false, "Dados de entrada in válidos.", null);
             }
 
+            var schoolId = Guid.Parse(command.SchoolId);
             // Verificar se a entidade já está cadastrado
-            if (_repositoryClass.Exist(x => x.Name == command.Name && x.SchoolId == command.SchoolId && x.Shift == command.Shift && x.Degree == command.Degree))
+            if (_repositoryClass.Exist(x => x.Name == command.Name && x.SchoolId == schoolId && x.Shift == command.Shift && x.Degree == command.Degree))
                 AddNotification("Turma", "Já existe uma turma cadastrada com esse nome");
 
 
             // Gerar as Entidades
-            var schoolClass = new Class(command.Name, command.Shift, command.Degree, command.SchoolId);
+            var schoolClass = new Class(command.Name, command.Shift, command.Degree,command.SchoolId);
 
             // Agrupar as Validações
             AddNotifications(schoolClass);
@@ -121,23 +121,16 @@ namespace MySchool.Domain.Handlers
             return new CommandResult(true, "Alteração realizada com sucesso!", school);
         }
 
-        public async Task<ICommandResult> Handle(RemoveClassCommand command)
+        public async Task<ICommandResult> Handle(Guid id)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                AddNotifications(command);
-                return new CommandResult(false, "Dados de entrada in válidos.", null);
-            }
 
             // Verificar se Documento já está cadastrado
-            if (command.Id == Guid.Empty)
+            if (id == Guid.Empty)
             {
                 AddNotification("Id", "Parametro inválido.");
             }
 
-            var schoolClass = _repositoryClass.GetById(command.Id);
+            var schoolClass = _repositoryClass.GetById(id);
 
             if (schoolClass == null)
             {

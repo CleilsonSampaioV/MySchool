@@ -13,8 +13,7 @@ namespace MySchool.Domain.Handlers
     public class SchoolHandler : Notifiable,
         IHandler<AddSchoolCommand>,
         IHandler<UpdateAddressSchoolCommand>,
-        IHandler<UpdateNameSchoolCommand>,
-        IHandler<RemoveSchoolCommand>
+        IHandler<UpdateSchoolCommand>
     {
         private readonly IRepositorySchool _repositorySchool;
         private readonly IRepositoryClass _repositoryClass;
@@ -95,7 +94,7 @@ namespace MySchool.Domain.Handlers
             return new CommandResult(true, "Alteração realizada com sucesso!", school);
         }
 
-        public async Task<ICommandResult> Handle(UpdateNameSchoolCommand command)
+        public async Task<ICommandResult> Handle(UpdateSchoolCommand command)
         {
             command.Validate();
 
@@ -129,30 +128,23 @@ namespace MySchool.Domain.Handlers
             return new CommandResult(true, "Alteração realizada com sucesso!", school);
         }
 
-        public async Task<ICommandResult> Handle(RemoveSchoolCommand command)
+        public async Task<ICommandResult> Handle(Guid id)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                AddNotifications(command);
-            }
-
             // Verificar se Documento já está cadastrado
-            if (command.Id == Guid.Empty)
+            if (id == Guid.Empty)
             {
                 AddNotification("Id", "Parametro inválido.");
             }
 
-            //TODO Aplicata a regra para verificar se já tem turmas cadastradas para a escola
-            var classes = _repositoryClass.ListBy(x => x.SchoolId == command.Id).ToList();
+            //Verificar se já tem turmas cadastradas para a escola
+            var classes = _repositoryClass.ListBy(x => x.SchoolId == id).ToList();
 
             if (classes.Any())
             {
                 AddNotification("Escola", "Não é possivel escluir a escola pois a mesma já possui turmas cadastradas.");
             }
 
-            var school = _repositorySchool.GetById(command.Id);
+            var school = _repositorySchool.GetById(id);
 
             // Verificar se Escola já está cadastrado
             if (school == null)

@@ -28,30 +28,31 @@ namespace MySchool.Ui.Api.Controllers
             return Ok(schoolQueries.Get(Guid.Parse(id)).Result);
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] AddSchoolCommand command, [FromServices] SchoolHandler handler)
+        //{
+        //    return await ResponseAsync((CommandResult)handler.Handle(command).Result);
+        //}
+
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddSchoolCommand command, [FromServices] SchoolHandler handler)
+        [Route("Create")]
+        public async Task<IActionResult> Create([FromBody] AddSchoolCommand command, [FromServices] SchoolHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
-        [HttpPatch()]
-        [Route("UpdateName")]
-        public async Task<IActionResult> Put([FromBody] UpdateNameSchoolCommand command, [FromServices] SchoolHandler handler)
+        [HttpPut]
+        [Route("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateSchoolCommand command, [FromServices] SchoolHandler handler)
         {
             return await ResponseAsync((CommandResult)handler.Handle(command).Result);
         }
 
-        [HttpPatch()]
-        [Route("UpdateAddress")]
-        public async Task<IActionResult> Put([FromBody] UpdateAddressSchoolCommand command, [FromServices] SchoolHandler handler)
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id,[FromServices] SchoolHandler handler)
         {
-            return await ResponseAsync((CommandResult)handler.Handle(command).Result);
-        }
-
-        [HttpDelete()]
-        public async Task<IActionResult> Delete([FromBody] RemoveSchoolCommand command, [FromServices] SchoolHandler handler)
-        {
-            return await ResponseAsync((CommandResult)handler.Handle(command).Result);
+            return await ResponseAsync((CommandResult)handler.Handle(id).Result);
         }
     }
 }

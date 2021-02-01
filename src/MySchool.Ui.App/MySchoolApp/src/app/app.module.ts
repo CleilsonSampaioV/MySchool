@@ -1,19 +1,15 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+  declarations: [AppComponent],
+  imports: [CoreModule, AppRoutingModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
   ],
-  imports: [
-    CoreModule,
-    AppRoutingModule
-  ], schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

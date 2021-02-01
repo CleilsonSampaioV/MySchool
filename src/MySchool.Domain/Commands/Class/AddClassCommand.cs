@@ -10,7 +10,7 @@ namespace MySchool.Domain.Commands.Class
         public string Name { get; set; }
         public string Shift { get; set; }
         public string Degree { get; set; }
-        public Guid SchoolId { get; set; }
+        public string SchoolId { get; set; }
         public void Validate()
         {
             AddNotifications(new Contract()

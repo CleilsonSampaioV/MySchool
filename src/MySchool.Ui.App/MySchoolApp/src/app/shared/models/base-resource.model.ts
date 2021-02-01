@@ -1,3 +1,6 @@
+
+import { Guid } from "guid-typescript";
+
 export abstract class BaseResourceModel {
-  id?: number;
+  id?: Guid;
 }

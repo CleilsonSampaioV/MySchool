@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Flunt.Notifications;
+﻿using Flunt.Notifications;
 using MySchool.Domain.Commands;
 using MySchool.Domain.Interfaces.Command;
 using MySchool.Domain.Interfaces.Repositories;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MySchool.Domain.Queries
 {
@@ -19,9 +18,9 @@ namespace MySchool.Domain.Queries
 
         public async Task<ICommandResult> GetAll()
         {
-            var listOfSchools = _repositorySchool.List().ToList();
+            var listOfSchools = _repositorySchool.ListOrderedBy(x=>x.Name, true).ToList();
 
-            return new CommandResult(true, "Cadastro realizado com sucesso!", listOfSchools);
+            return listOfSchools != null ? new CommandResult(true, "Dados obtidos com sucesso com sucesso!", listOfSchools) : new CommandResult(false, "Dados não encontrados!", null);
         }
 
         public async Task<ICommandResult> Get(Guid id)

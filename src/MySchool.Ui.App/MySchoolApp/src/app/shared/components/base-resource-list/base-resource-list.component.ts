@@ -3,6 +3,8 @@ import { OnInit, Directive } from '@angular/core';
 import { BaseResourceModel } from "../../models/base-resource.model";
 import { BaseResourceService } from "../../services/base-resource.service";
 
+import { Guid } from 'guid-typescript';
+
 @Directive()
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
 
@@ -12,7 +14,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
 
   ngOnInit() {
     this.resourceService.getAll().subscribe(
-      resources => this.resources = resources.sort((a,b) => b.id - a.id),
+      resources => this.resources = resources,
       error => alert('Erro ao carregar a lista')
     )
   }
