@@ -14,7 +14,7 @@ namespace MySchool.Infra.Data.Repositories.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=SQL5101.site4now.net;Initial Catalog=DB_A6E9D7_MySchoolProject;User Id=DB_A6E9D7_MySchoolProject_admin;Password=senha@senha123");
+                optionsBuilder.UseSqlServer("Data Source=SQL5101.site4now.net;Initial Catalog=DB_A6E9D7_MySchoolProject;User Id=DB_A6E9D7_MySchoolProject_admin;Password=*******");
             }
         }
 
